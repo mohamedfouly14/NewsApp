@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment3">
+    <fragment
+        android:id="@+id/homeFragment3"
+        android:name="com.example.newsapp.presentation.fragments.homeFragment.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/searchFragment3"
+        android:name="com.example.newsapp.presentation.fragments.searchFragment.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/bookmarkFragment3"
+        android:name="com.example.newsapp.presentation.fragments.bookmarkFragment.BookmarkFragment"
+        android:label="BookmarkFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.newsapp.presentation.fragments.settingFragment.SettingFragment"
+        android:label="SettingFragment" />
+</navigation>
