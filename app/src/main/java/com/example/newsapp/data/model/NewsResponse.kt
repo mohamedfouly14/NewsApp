@@ -1,5 +1,7 @@
 package com.example.newsapp.data.model
 
+import androidx.room.Entity
+import androidx.room.Ignore
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -12,6 +14,7 @@ data class NewsResponse(
     val totalResults: Int
 )
 
+@Entity(tableName = "Article_table")
 data class Article(
     @SerializedName("author")
     val author: String,
@@ -21,6 +24,7 @@ data class Article(
     val description: String,
     @SerializedName("publishedAt")
     val publishedAt: String,
+    @Ignore
     @SerializedName("source")
     val source: Source,
     @SerializedName("title")

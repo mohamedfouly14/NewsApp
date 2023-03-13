@@ -1,5 +1,6 @@
 package com.example.newsapp.data.di
 
+import com.example.newsapp.data.data_source.datasources.NewsLocalDataSource
 import com.example.newsapp.data.data_source.datasources.NewsRemoteDataSource
 import com.example.newsapp.data.repository.NewsRepository
 import com.example.newsapp.data.repository.NewsRepositoryImp
@@ -15,8 +16,9 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideRepository(
-        remoteDataSource: NewsRemoteDataSource
+        remoteDataSource: NewsRemoteDataSource,
+        newsLocalDataSource: NewsLocalDataSource
     ):NewsRepository{
-        return NewsRepositoryImp(remoteDataSource)
+        return NewsRepositoryImp(remoteDataSource,newsLocalDataSource)
     }
 }

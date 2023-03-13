@@ -1,4 +1,4 @@
-package com.example.newsapp.domain
+package com.example.newsapp.domain.use_cases
 
 import com.example.newsapp.Utils.Constants.SUCCESS_CODE
 import com.example.newsapp.data.model.Article
