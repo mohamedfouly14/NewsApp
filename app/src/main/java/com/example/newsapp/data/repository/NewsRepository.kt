@@ -10,9 +10,12 @@ interface NewsRepository {
     suspend fun getNews(querySearch: String? = null,
                         country: String? = null,
                         sources: Source? = null,): Response<NewsResponse>
-    suspend fun saveArticle(article: Article):Long
+
+
 
     fun getAllArticles(): Flow<List<Article>>
-
     suspend fun deleteArticle(article: Article):Int
+    suspend fun saveArticle(article: Article):Long
+
+
 }

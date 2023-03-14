@@ -2,6 +2,8 @@ package com.example.newsapp.data.model
 
 import androidx.room.Entity
 import androidx.room.Ignore
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -14,8 +16,10 @@ data class NewsResponse(
     val totalResults: Int
 )
 
-@Entity(tableName = "Article_table")
+@Entity(tableName = "Article_table",indices = [Index(value = ["url"], unique = true)])
 data class Article(
+    @PrimaryKey(autoGenerate = true)
+    var id:Int,
     @SerializedName("author")
     val author: String,
     @SerializedName("content")
@@ -24,7 +28,6 @@ data class Article(
     val description: String,
     @SerializedName("publishedAt")
     val publishedAt: String,
-    @Ignore
     @SerializedName("source")
     val source: Source,
     @SerializedName("title")
