@@ -9,7 +9,7 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveArticle(article: Article):Long
 
-    @Query("Select * from articles")
+    @Query("Select * from Article_table")
     fun getAllArticles(): Flow<List<Article>>
 
     @Delete

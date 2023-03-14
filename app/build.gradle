@@ -83,9 +83,9 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
-    //room
-    implementation("androidx.room:room-runtime:2.5.0")
-    annotationProcessor("androidx.room:room-compiler:2.5.0")
+//    //room
+//    implementation("androidx.room:room-runtime:2.5.0")
+//    annotationProcessor("androidx.room:room-compiler:2.5.0")
     //Gson
     implementation 'com.google.code.gson:gson:2.10.1'
 
@@ -93,4 +93,13 @@ dependencies {
 
 
 
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+}
+
+kapt {
+    correctErrorTypes true
 }
