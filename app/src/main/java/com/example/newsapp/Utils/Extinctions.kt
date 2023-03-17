@@ -1,6 +1,12 @@
 package com.example.newsapp.Utils
 
+import android.app.Application
+import android.content.Context
 import android.text.format.DateUtils
+import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -17,4 +23,7 @@ fun String.convertDateFormate(format: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"): 
         else
             "unknown"
     }
+}
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }

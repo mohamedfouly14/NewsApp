@@ -13,11 +13,19 @@ import com.example.newsapp.R
 import com.example.newsapp.Utils.convertDateFormate
 import com.example.newsapp.data.model.Article
 import com.example.newsapp.databinding.LatestNewsBinding
+import dagger.Module
+import dagger.hilt.InstallIn
 import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
+import javax.inject.Singleton
+
+
 
 @FragmentScoped
-class LatestNewsAdapter @Inject constructor()
+class LatestNewsAdapter @Inject constructor(
+    private val onClick:(Article)->Unit
+)
     :RecyclerView.Adapter<LatestNewsAdapter.NewsViewHolder> (){
 
     private val callback = object : DiffUtil.ItemCallback<Article>() {
@@ -60,6 +68,11 @@ class LatestNewsAdapter @Inject constructor()
                     .placeholder(R.drawable.ic_loading).error(R.drawable.ic_no_image)
                     .transform(CenterCrop(), RoundedCorners(15))
                     .into(binding.image)
+                binding.root.setOnClickListener {
+                    onClick?.let {
+                        it(article)
+                    }
+                }
             }
 
     }

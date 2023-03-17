@@ -4,6 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.example.newsapp.presentation.fragments.detailFragment.DetailsViewModel" />
+        <variable
+            name="Article"
+            type="com.example.newsapp.data.model.Article" />
 
     </data>
 
@@ -31,13 +37,24 @@
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="36dp"
                 android:contentDescription="@string/bookmark"
+                android:onClick="@{()->viewModel.saveArticle(Article)}"
                 android:src="@drawable/ic_baseline_bookmark_border_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/image"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/title"
+                android:text="@{Article.title}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
@@ -49,6 +66,7 @@
 
             <TextView
                 android:id="@+id/description"
+                android:text="@{Article.description}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
@@ -59,7 +77,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
-                android:id="@+id/contnt"
+                android:id="@+id/content"
+                android:text="@{Article.content}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"

@@ -56,7 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
             it.data?.let { data ->
                 endRequest()
-                data[NewsSections.LatestNews.name]?.let {
+                data.let {
                     latestNewsAdapter.differ.submitList(it)
                 }
             }
@@ -64,6 +64,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
     override fun setupAdaptor() {
+
     }
     override fun startRequest() {
         binding.latestNews.visibility = View.GONE
