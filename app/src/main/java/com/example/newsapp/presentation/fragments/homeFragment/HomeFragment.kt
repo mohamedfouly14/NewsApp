@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azmiradi.news.presentation.ui_handlers.HandlerRequest
+import com.example.newsapp.R
 import com.example.newsapp.Utils.NewsSections
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.presentation.adaptors.LatestNewsAdapter
@@ -64,7 +66,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
     override fun setupAdaptor() {
-
+        latestNewsAdapter.setOnItemClickListener {
+            val bundle =Bundle().apply {
+                putSerializable("selected_item",it)
+            }
+            findNavController().navigate(
+                R.id.action_homeFragment3_to_detailFragment,bundle
+            )
+        }
     }
     override fun startRequest() {
         binding.latestNews.visibility = View.GONE

@@ -20,21 +20,23 @@ class DetailFragment :BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        observeData()
+        handleUI()
     }
 
     override fun handleUI() {
         binding.article=article
         binding.viewModel=viewModel
-        binding.date.text=article.publishedAt.toString().convertDateFormate()
         binding.lifecycleOwner=this
-
+        binding.date.text = article.publishedAt.toString().convertDateFormate()
         Glide.with(binding.image.image.context).load(article.urlToImage)
             .placeholder(R.drawable.ic_loading).error(R.drawable.ic_no_image)
             .into(binding.image.image)
     }
 
     override fun observeData() {
+        val args : DetailFragmentArgs by navArgs()
+        article = args.selectedItem
         viewModel.saveArticle.observe(requireActivity()) {
             if (it) {
                 requireContext().showToast(getString(R.string.article_saved))

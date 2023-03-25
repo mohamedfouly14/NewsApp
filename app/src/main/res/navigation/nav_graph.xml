@@ -14,7 +14,11 @@
     <fragment
         android:id="@+id/searchFragment3"
         android:name="com.example.newsapp.presentation.fragments.searchFragment.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment3_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookmarkFragment3"
         android:name="com.example.newsapp.presentation.fragments.bookmarkFragment.BookmarkFragment"
@@ -27,12 +31,14 @@
         android:id="@+id/settingFragment"
         android:name="com.example.newsapp.presentation.fragments.settingFragment.SettingFragment"
         android:label="SettingFragment" >
-        <action
-            android:id="@+id/action_settingFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.newsapp.presentation.fragments.detailFragment.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <argument
+            android:name="selected_item"
+            app:argType="com.example.newsapp.data.model.Article" />
+    </fragment>
 </navigation>

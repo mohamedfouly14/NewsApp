@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azmiradi.news.presentation.ui_handlers.HandlerRequest
 import com.example.newsapp.R
@@ -27,11 +28,20 @@ class SearchFragment:BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::
         super.onViewCreated(view, savedInstanceState)
         handleUI()
         observeData()
+        setupAdaptor()
 
     }
 
 
     override fun setupAdaptor() {
+        latestNewsAdapter.setOnItemClickListener {
+            val bundle=Bundle().apply {
+                putSerializable("selected_item",it)
+            }
+            findNavController().navigate(
+                R.id.action_searchFragment3_to_detailFragment,bundle
+            )
+        }
     }
 
     override fun handleUI() {

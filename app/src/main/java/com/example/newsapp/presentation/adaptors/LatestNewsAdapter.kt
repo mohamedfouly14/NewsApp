@@ -23,9 +23,7 @@ import javax.inject.Singleton
 
 
 @FragmentScoped
-class LatestNewsAdapter @Inject constructor(
-    private val onClick:(Article)->Unit
-)
+class LatestNewsAdapter @Inject constructor()
     :RecyclerView.Adapter<LatestNewsAdapter.NewsViewHolder> (){
 
     private val callback = object : DiffUtil.ItemCallback<Article>() {
@@ -69,11 +67,28 @@ class LatestNewsAdapter @Inject constructor(
                     .transform(CenterCrop(), RoundedCorners(15))
                     .into(binding.image)
                 binding.root.setOnClickListener {
-                    onClick?.let {
+                    onItemClick?.let {
+                        it(article)
+                    }
+                    }
+                binding.bookmark.setOnClickListener {
+                    onBookmarkClick?.let {
                         it(article)
                     }
                 }
+                }
             }
+    private var onBookmarkClick: ((Article) -> Unit)? = null
+
+    private var onItemClick: ((Article) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClick = listener
+    }
+
+    fun onBookmarkClickListener(listener: (Article) -> Unit) {
+        onBookmarkClick = listener
+    }
 
     }
-}
+
