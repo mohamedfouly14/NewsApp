@@ -11,4 +11,6 @@
     <string name="enable_dark">Enable dark mode</string>
     <string name="disable_dark">Disable dark mode</string>
     <string name="news">News</string>
+    <string name="article_deleted">Article Deleted</string>
+    <string name="article_not_deleted">Article not Deleted</string>
 </resources>
