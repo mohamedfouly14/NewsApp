@@ -3,6 +3,8 @@ package com.example.newsapp.presentation.fragments.bookmarkFragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.azmiradi.news.presentation.ui_handlers.Handlers
 import com.example.newsapp.R
 import com.example.newsapp.Utils.showToast
@@ -10,9 +12,11 @@ import com.example.newsapp.databinding.FragmentBookmarkBinding
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.presentation.adaptors.LatestNewsAdapter
 import com.example.newsapp.presentation.fragments.BaseFragment
+import com.example.newsapp.presentation.fragments.homeFragment.HomeFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.logging.Handler
 import javax.inject.Inject
-
+@AndroidEntryPoint
 class BookmarkFragment:BaseFragment<FragmentBookmarkBinding>(FragmentBookmarkBinding::inflate),Handlers {
 
     @Inject
@@ -23,14 +27,25 @@ class BookmarkFragment:BaseFragment<FragmentBookmarkBinding>(FragmentBookmarkBin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAdaptor()
+        handleUI()
+        observeData()
     }
 
     override fun setupAdaptor() {
-        TODO("Not yet implemented")
+        latestNewsAdapter.isBookmark = true
+        latestNewsAdapter.onBookmarkClickListener {
+            viewModel.deleteArticle(it)
+        }
+        latestNewsAdapter.setOnItemClickListener {article->
+            val action= BookmarkFragmentDirections.actionBookmarkFragment3ToDetailFragment(article)
+            findNavController().navigate(action)
+        }
     }
 
     override fun handleUI() {
-        TODO("Not yet implemented")
+        binding.bookmarkRecyclerView.layoutManager= LinearLayoutManager(requireContext())
+        binding.bookmarkRecyclerView.adapter = latestNewsAdapter
     }
 
     override fun observeData() {

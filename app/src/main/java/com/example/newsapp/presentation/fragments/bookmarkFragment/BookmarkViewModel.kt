@@ -7,13 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.newsapp.data.model.Article
 import com.example.newsapp.domain.use_cases.DeleteArticleUseCase
 import com.example.newsapp.domain.use_cases.GetLocalArticlesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
-
+@HiltViewModel
 class BookmarkViewModel @Inject constructor(
     private val getLocalArticlesUseCase: GetLocalArticlesUseCase,
     private val deleteArticleUseCase: DeleteArticleUseCase

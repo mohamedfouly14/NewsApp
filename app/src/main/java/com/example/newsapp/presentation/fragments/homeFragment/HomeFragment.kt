@@ -49,7 +49,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun observeData() {
-        viewModel.allNewsState.observe(requireActivity()) {
+        viewModel.allNewsState.observe(requireActivity()) { it ->
             if (it.isLoading) {
                 startRequest()
             }
@@ -66,13 +66,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
     override fun setupAdaptor() {
-        latestNewsAdapter.setOnItemClickListener {
-            val bundle =Bundle().apply {
-                putSerializable("selected_item",it)
-            }
-            findNavController().navigate(
-                R.id.action_homeFragment3_to_detailFragment,bundle
-            )
+        latestNewsAdapter.setOnItemClickListener { article  ->
+            val action=HomeFragmentDirections.actionHomeFragment3ToDetailFragment(article)
+            findNavController().navigate(action)
         }
     }
     override fun startRequest() {

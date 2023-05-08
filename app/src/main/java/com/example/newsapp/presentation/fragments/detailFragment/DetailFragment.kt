@@ -12,7 +12,9 @@ import com.example.newsapp.Utils.showToast
 import com.example.newsapp.data.model.Article
 import com.example.newsapp.databinding.FragmentDetailsBinding
 import com.example.newsapp.presentation.fragments.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailFragment :BaseFragment<FragmentDetailsBinding>(FragmentDetailsBinding::inflate),BaseHandlers{
 
     private val viewModel:DetailsViewModel by viewModels()
@@ -35,8 +37,8 @@ class DetailFragment :BaseFragment<FragmentDetailsBinding>(FragmentDetailsBindin
     }
 
     override fun observeData() {
-        val args : DetailFragmentArgs by navArgs()
-        article = args.selectedItem
+        val args:DetailFragmentArgs by navArgs()
+        article =args.selectedItem
         viewModel.saveArticle.observe(requireActivity()) {
             if (it) {
                 requireContext().showToast(getString(R.string.article_saved))

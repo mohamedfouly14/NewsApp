@@ -25,7 +25,7 @@ import javax.inject.Singleton
 @FragmentScoped
 class LatestNewsAdapter @Inject constructor()
     :RecyclerView.Adapter<LatestNewsAdapter.NewsViewHolder> (){
-
+    var isBookmark: Boolean = false
     private val callback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
@@ -60,6 +60,7 @@ class LatestNewsAdapter @Inject constructor()
         val binding:LatestNewsBinding
         ) :RecyclerView.ViewHolder(binding.root){
             fun bind(article: Article){
+                binding.isBookmark=isBookmark
                 binding.article=article
                 binding.date.text= article.publishedAt.toString().convertDateFormate()
                 Glide.with(binding.image.context).load(article.urlToImage)

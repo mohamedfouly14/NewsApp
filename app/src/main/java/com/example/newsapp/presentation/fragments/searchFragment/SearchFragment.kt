@@ -13,6 +13,7 @@ import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.databinding.FragmentSearchBinding
 import com.example.newsapp.presentation.adaptors.LatestNewsAdapter
 import com.example.newsapp.presentation.fragments.BaseFragment
+import com.example.newsapp.presentation.fragments.homeFragment.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,12 +36,8 @@ class SearchFragment:BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::
 
     override fun setupAdaptor() {
         latestNewsAdapter.setOnItemClickListener {
-            val bundle=Bundle().apply {
-                putSerializable("selected_item",it)
-            }
-            findNavController().navigate(
-                R.id.action_searchFragment3_to_detailFragment,bundle
-            )
+            val action= HomeFragmentDirections.actionHomeFragment3ToDetailFragment(it)
+            findNavController().navigate(action)
         }
     }
 

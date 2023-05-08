@@ -28,7 +28,9 @@ init {
     private fun getNews() {
         _allNewsState.value = DataState(true)
         job?.cancel()
-        getNewsUseCase(country = "eg").onEach {
+        job=getNewsUseCase(country = "eg")
+            .buffer()
+            .onEach {
             _allNewsState.value=DataState(data = it?.filterNotNull())
         }.catch { erorr ->
             _allNewsState.value=DataState(error =erorr.message.toString())
